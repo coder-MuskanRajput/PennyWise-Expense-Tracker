@@ -30,22 +30,37 @@
       </div>
   </div>
 
+  <% var income = 0 %>
+  <% var expense = 0 %>
+
+  <%user.add.forEach(function(incExp){%>
+    <%if(incExp.amount.includes("-")){%>
+      <% expense +=  +incExp.amount; %>
+    
+    <%}else{%>
+      <% income +=  +incExp.amount; %>
+   <% }})%>
+
   <!-- here show income and expenses -->
   <div class="container">
 
     <h4>Your Balance</h4>
-    <h1 id="balance">$0.00</h1>
+    <h1 id="balance">
+      <% if(income < expense){ %>
+        <%="-"%>
+      <%}%>  
+      $<%=income+expense%> </h1>
     <div class="inc-exp-container">
         <div>
             <h4>Income</h4>
             <p id="money-plus" class="money-plus">
-                +$0.00
+                +$<%=income%>
             </p>
         </div>
         <div>
             <h4>Expense</h4>
             <p id="money-minus" class="money-minus">
-                -$0.00
+                -$<%=expense%>
             </p>
         </div>
     </div>
@@ -53,12 +68,26 @@
     <h3>History</h3>
 
     <ul id="list" class="list">
-        <li class="minus">
-            Cash <span>-$400</span>
+      <% user.add.forEach(function(check){ %>
+        <% if(check.amount.includes('-')){ %>
+          <li class="minus">
+    
+    <%=check.category%> <span><%=check.amount%></span>
             <button class="delete-btn">X</button>
         </li>
+        
+        <%}else{%>
+          <li class="plus">
+    <%=check.category%> <span><%=check.amount%></span>
+           
+            <button class="delete-btn">X</button>
+        </li>
+        
+   <%} }) %>
+        
     </ul>
   </div>
+  <script src="/javascripts/expense.js"></script>
 
 <%- include("partials/footer")%>
 
@@ -135,7 +164,7 @@
     margin: 10px 0;
   }
   .list li.plus{
-    border-right: 5p solid #2ecc71;
+    border-right: 5px solid #2ecc71;
   }
   .list li.minus{
     border-right: 5px solid #c0392b;

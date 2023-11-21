@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const USER = require("../models/usermodel");
 const EXPENSE = require("../models/expenseModel");
-
+const gmailCred = require("../EmailHide");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const nodemailer = require("nodemailer")
@@ -79,8 +79,8 @@ const transport = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
   auth: {
-      user: "muskanrajput1510@gmail.com",
-      pass: "degw chuk ovci zfjk",
+      user: gmailCred.gmail,
+      pass: gmailCred.pass,
   },
 });
 
@@ -229,15 +229,43 @@ router.post("/addExpenses" , isLoggedIn, async function(req,res,next){
   try {
     const expense = await EXPENSE(req.body);
     req.user.expenses.push(expense._id);
-    expense.user = req.user._id;
+    expense.user = req.user.id;
+
+    req.user.add.push({
+      amount : req.body.amount,
+      category : req.body.category
+    });
+
+    
+
+  //   if(req.body.amount.includes("-")){
+  //     req.user.add.push(req.body.amount)
+
+  //   //   req.user.add.push( {
+  //   //     // name: false,
+  //   //     amount : req.body.amount
+  //   // })
+  // }
+  //   else{
+  //     req.user.add.push(req.body.amount)
+  //     // req.user.add.push({
+  //     //   // name: true,
+  //     //   amount : req.body.amount,
+  //     // }) 
+  //   }
+
     await expense.save();
     await req.user.save();
-    res.redirect("/")
+    res.redirect("/profile");
   } catch (error) {
     console.log(error)
-    res.send
+    res.send(error)
   }
 } )
+
+router.post("/deleteExpense" , isLoggedIn , function(req,res,next){
+    
+})
 
 // is logged in function
 

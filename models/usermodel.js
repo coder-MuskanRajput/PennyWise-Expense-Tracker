@@ -9,8 +9,10 @@ const usermodel = new mongoose.Schema({
     },
     email: String,
     password : String,
-  expenses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Expense' }],
-
+    expenses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Expense' }],
+    add :[
+       
+    ],
     forgetPasswordOtp :{
         type: Number,
         default : -1
