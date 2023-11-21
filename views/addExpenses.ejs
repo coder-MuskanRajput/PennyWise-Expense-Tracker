@@ -1,0 +1,36 @@
+<%- include("partials/header")%>
+<link rel="stylesheet" href="/stylesheets/expenses.css">
+
+
+<div class="logo">
+    <img src="https://cdn-icons-png.flaticon.com/128/8196/8196973.png" alt="">
+    <h4>PennyWise</h4>
+</div>
+
+<div class="container">
+    <h3>Add New Transition</h3>
+
+    <form action="/addExpenses" method="post">
+        <div class="form-control">
+            <label for="Tags">Tags</label>
+            <input type="text"  id="tags" name="tags" placeholder="Enter Tags......">
+        </div>
+        <div class="form-control">
+            <label for="amount">Amount</label>
+            <input type="number"  id="amount" name="amount" placeholder="Enter Amount..." required>
+        </div>
+
+        <div class="form-control">
+            <label for="categories">Categories</label>
+            <input type="text"  id="category" name="category" placeholder="Enter Categories.." required >
+        </div>
+
+        <div class="form-control">
+            <label for="Text">Text</label>
+            <input type="text"  id="text" name="text" placeholder="Enter Text.." required>
+        </div>
+         <button class="btn">All Transaction</button>
+    </form>
+
+</div>
+<%- include("partials/footer")%>

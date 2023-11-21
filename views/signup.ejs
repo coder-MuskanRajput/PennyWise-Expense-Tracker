@@ -1,0 +1,23 @@
+<link rel="stylesheet" href="/stylesheets/form.css">
+<%- include("partials/header")%>
+<!-- <%- include("partials/nav")%> -->
+  <div class="main">
+<img class="signupImg" src="https://imgs.search.brave.com/hhnvi1eqcDqTp-KEpd8tVEqeQXTE-uw37QN-s7hfyXM/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/cG5ncGxheS5jb20v/d3AtY29udGVudC91/cGxvYWRzLzEvU2ln/bi1VcC1QTkctUm95/YWx0eS1GcmVlLUlt/YWdlLnBuZw" alt="" >
+
+<div class="form-container">
+   <img src="https://cdn-icons-png.flaticon.com/128/8196/8196973.png" alt="">
+   <h4>PennyWise</h4>
+
+   <form action="/signup" method="post">
+      
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Enter Password" required>
+            <br>
+            <button class="button">Sign Up</button>
+          <p>Already have an account? <a href="/signin">Sign In</a> </p>
+          <button class="home"><a href="/">Back to Home</a></button>
+   </form>
+</div>
+</div>
+<%- include("partials/footer")%>

@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="/stylesheets/form.css">
+<%- include("partials/header")%>
+<div class="main">
+    <img class="forgetImg" src="https://img.icons8.com/?size=40&id=51594&format=png" alt="" >
+    
+<div class="form-container">
+    <img src="https://cdn-icons-png.flaticon.com/128/8196/8196973.png" alt="">
+    <h4>PennyWise</h4>
+    <br>
+   <h1>Forgot Password</h1>
+    <form action="/forget" method="post">
+      <br>
+        <input type="email" name="email" placeholder="Enter Email" required>
+
+             <br>
+             <%if(forgetUSER.length !== 0){ %>
+                <span class="alert"><%= forgetUSER %></span>
+            <%} %>
+             
+             <button class="button">Send Otp</button>
+             <br>
+         <div class="routes">
+           <a href="/signin">Sign in</a>
+         </div>
+           <br>
+           <button class="home"><a href="/">Back to Home</a></button>
+    </form>
+ </div>
+ </div>
+ 
+<%- include("partials/footer")%>

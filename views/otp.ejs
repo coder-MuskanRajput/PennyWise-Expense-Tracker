@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="/stylesheets/form.css">
+<%- include("partials/header")%>
+
+<div class="main">
+    
+<div class="form-container">
+    <img src="https://cdn-icons-png.flaticon.com/128/8196/8196973.png" alt="">
+    <h4>PennyWise</h4>
+     
+    <br> 
+    <h1>Enter Otp</h1>
+    <form action="/matchOtp/<%= email%>" method="post">
+      <br>
+      <input type="number" name="otp" placeholder="****">
+      <span class="alert"><%= otpResponse %></span>
+    <button class="button">Confirm</button>
+           <br>
+           <button class="home"><a href="/">Back to Home</a></button>
+    </form>
+ </div>
+<%- include("partials/footer")%>

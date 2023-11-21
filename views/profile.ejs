@@ -1,0 +1,161 @@
+<%- include("partials/header")%>
+ <link rel="stylesheet" href="/stylesheets/nav.css">
+ <link rel="stylesheet" href="/stylesheets/profile.css">
+
+<div class="nav">
+    <div class="logo">
+    <img src="https://cdn-icons-png.flaticon.com/128/8196/8196973.png" alt="">
+    <h4>PennyWise</h4>
+    </div>
+     
+    <div class="button">
+    <button><a href="/signout">LOGOUT</a></button>
+   </div>
+</div>
+<div class="box">
+      
+      <div class="text">
+        <p class="name">Welcome <%= user.username %></p>
+      </div>
+      
+      <div class="button">
+  
+        <div>
+          <a href="/changePassword"><button class="message" type="button">Change Password</button></a>
+          
+        </div>
+        <div>
+            <a href="/addExpenses"><button class="message" type="button">Add Expenses</button></a>  
+          </div>
+      </div>
+  </div>
+
+  <!-- here show income and expenses -->
+  <div class="container">
+
+    <h4>Your Balance</h4>
+    <h1 id="balance">$0.00</h1>
+    <div class="inc-exp-container">
+        <div>
+            <h4>Income</h4>
+            <p id="money-plus" class="money-plus">
+                +$0.00
+            </p>
+        </div>
+        <div>
+            <h4>Expense</h4>
+            <p id="money-minus" class="money-minus">
+                -$0.00
+            </p>
+        </div>
+    </div>
+
+    <h3>History</h3>
+
+    <ul id="list" class="list">
+        <li class="minus">
+            Cash <span>-$400</span>
+            <button class="delete-btn">X</button>
+        </li>
+    </ul>
+  </div>
+
+<%- include("partials/footer")%>
+
+<style>
+  :root{
+    --box-shadow : 0 1px 3px rgba(0,0,0,0.12),
+    0 1px 2px rgba(0,0,0,0.24)
+  } 
+  .container{
+    margin: 30px auto;
+    width: 450px;
+    padding: 10px;
+    background-color: #f7f7f7;
+    position: absolute;
+    top: 15%;
+    left: 39%;
+    border-radius: 10px;
+  }
+  h1{
+    letter-spacing: 1px;
+    margin: 0;
+  }
+  h3{
+    border-bottom: 1px solid #bbb;
+    padding-bottom: 10px;
+    margin: 40px 0 10px;
+  }
+  h4{
+    margin: 0;
+    text-transform: uppercase;
+  }
+  .inc-exp-container{
+    background-color: #fff;
+    box-shadow: var(--box-shadow);
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  .inc-exp-container > div{
+    flex: 1;
+    text-align: center;
+  }
+  .inc-exp-container > div:first-of-type{
+    border-right: 1px solid #dedede;
+  }
+  .money{
+    font-size: 2;
+    letter-spacing: 1px;
+    margin: 5px 0;
+  }
+  .money-plus{
+    color: #2ecc71;
+  }
+  .money-minus{
+    color: #c0392b;
+  }
+  .delete-btn:focus{
+    outline: 0;
+  }
+  .list{
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 40px;
+  }
+  .list li{
+    background-color: #fff;
+    box-shadow: var(--box-shadow);
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    padding: 10px;
+    margin: 10px 0;
+  }
+  .list li.plus{
+    border-right: 5p solid #2ecc71;
+  }
+  .list li.minus{
+    border-right: 5px solid #c0392b;
+  }
+  .delete-btn{
+    cursor: pointer;
+    background-color: tomato;
+    border: 0;
+    color: #fff;
+    font-size: 20px;
+    line-height: 20px;
+    padding: 2px 5px;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(-100%, -50%);
+    opacity:0;
+    transition: opacity 0.3s ease;
+  }
+  .list li:hover .delete-btn{
+    opacity: 1;
+  }
+</style>
