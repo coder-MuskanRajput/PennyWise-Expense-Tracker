@@ -13,10 +13,13 @@
     <form action="/addExpenses" method="post">
         <div class="form-control">
             <label for="Tags">Tags</label>
-            <input type="text"  id="tags" name="tags" placeholder="Enter Tags......">
+            <input type="text"  id="tags" name="tags" placeholder="Enter Tags......" required>
         </div>
         <div class="form-control">
             <label for="amount">Amount</label>
+            <p>Add amount with + it goes to income</p>
+            <p>Add amount with - it goes to expense</p>
+            <br>
             <input type="number"  id="amount" name="amount" placeholder="Enter Amount..." required>
         </div>
 
@@ -28,6 +31,10 @@
         <div class="form-control">
             <label for="Text">Text</label>
             <input type="text"  id="text" name="text" placeholder="Enter Text.." required>
+        </div>
+        <div class="form-control">
+            <label for="date">Date</label>
+            <input type="date"  id="date" name="date" placeholder="Enter Date" required>
         </div>
          <button class="btn">All Transaction</button>
     </form>

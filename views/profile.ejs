@@ -71,16 +71,17 @@
       <% user.add.forEach(function(check){ %>
         <% if(check.amount.includes('-')){ %>
           <li class="minus">
-    
+       
     <%=check.category%> <span><%=check.amount%></span>
-            <button class="delete-btn">X</button>
-        </li>
+    
+    <button class="details"> <a href="/details">Details</a></button>
+       </li>
         
         <%}else{%>
           <li class="plus">
     <%=check.category%> <span><%=check.amount%></span>
            
-            <button class="delete-btn">X</button>
+            <button class="details"> <a href="/details">Details</a></button>
         </li>
         
    <%} }) %>
@@ -169,7 +170,7 @@
   .list li.minus{
     border-right: 5px solid #c0392b;
   }
-  .delete-btn{
+  /* .delete-btn{
     cursor: pointer;
     background-color: tomato;
     border: 0;
@@ -186,5 +187,10 @@
   }
   .list li:hover .delete-btn{
     opacity: 1;
+  } */
+
+  .details a{
+    text-decoration: none;
+    color: #333;
   }
 </style>

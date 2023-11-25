@@ -263,6 +263,13 @@ router.post("/addExpenses" , isLoggedIn, async function(req,res,next){
   }
 } )
 
+
+router.get("/details" , isLoggedIn, function(req,res,next){
+  
+  res.render("details" )
+})
+
+
 router.post("/deleteExpense" , isLoggedIn , function(req,res,next){
     
 })
