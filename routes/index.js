@@ -5,10 +5,10 @@ const EXPENSE = require("../models/expenseModel");
 const gmailCred = require("../EmailHide");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
-const nodemailer = require("nodemailer")
+const nodemailer = require("nodemailer");
 passport.use(new LocalStrategy(USER.authenticate()));
 
-/* GET home page. */
+/* GET home page.*/
 router.get('/', function(req, res, next) {
   res.render('index');
 });
@@ -105,9 +105,6 @@ transport.sendMail(mailOptions, (err, info) => {
 });
 }
 
-
-
-
 // forget route
 
 router.get("/forget" , function(req,res,next){
@@ -148,7 +145,7 @@ router.post('/forget', async function(req, res, next) {
 
 // match otp
 
-  router.post("/matchOtp/:email" , async function(req,res,next){
+router.post("/matchOtp/:email" , async function(req,res,next){
     try {
       const forgetUser = await USER.findOne({email : req.params.email})
       if(!forgetUser){
@@ -220,7 +217,6 @@ router.post("/changePassword" , isLoggedIn , async function(req,res,next){
   }
 })
 
-
 router.get("/addExpenses" , isLoggedIn, function(req,res,next){
   res.render("addExpenses" )
 })
@@ -235,8 +231,6 @@ router.post("/addExpenses" , isLoggedIn, async function(req,res,next){
       amount : req.body.amount,
       category : req.body.category
     });
-
-    
 
   //   if(req.body.amount.includes("-")){
   //     req.user.add.push(req.body.amount)
@@ -261,22 +255,32 @@ router.post("/addExpenses" , isLoggedIn, async function(req,res,next){
     console.log(error)
     res.send(error)
   }
-} )
-
-
-router.get("/details" , isLoggedIn, function(req,res,next){
-  
-  res.render("details" )
 })
 
+router.get("/details/:id" , isLoggedIn, async function(req,res,next){
+   try {
+      const data = await EXPENSE.findById(req.params.id)
+      res.render("details",{data:data})
+   } catch (error) {
+    console.log("Details Error" , error)
+     res.send(error)
+   }
+})
 
-router.post("/deleteExpense" , isLoggedIn , function(req,res,next){
-    
+router.post("/deleteExpense/:id" , isLoggedIn , async function(req,res,next){
+    try {
+      const detail = await EXPENSE.findByIdAndDelete(req.params.id)
+      res.redirect("/details");
+    } catch (error) {
+      console.log("delete ka Error hai", error)
+      res.send(error)
+    }
 })
 
 // is logged in function
 
 function isLoggedIn(req, res, next) {
+  
   if (req.isAuthenticated()) {
       next();
   } else {

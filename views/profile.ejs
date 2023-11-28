@@ -19,12 +19,10 @@
       </div>
       
       <div class="button">
-  
         <div>
-          <a href="/changePassword"><button class="message" type="button">Change Password</button></a>
-          
+          <a href="/changePassword"><button class="message" type="button">Change Password</button></a>  
         </div>
-        <div>
+          <div>
             <a href="/addExpenses"><button class="message" type="button">Add Expenses</button></a>  
           </div>
       </div>
@@ -42,6 +40,7 @@
    <% }})%>
 
   <!-- here show income and expenses -->
+
   <div class="container">
 
     <h4>Your Balance</h4>
@@ -68,29 +67,39 @@
     <h3>History</h3>
 
     <ul id="list" class="list">
-      <% user.add.forEach(function(check){ %>
-        <% if(check.amount.includes('-')){ %>
-          <li class="minus">
+      
+      <% user.add.forEach(function(check ,idx) { %>
+
+         <% user.expenses.forEach(function(exp, index) { %>
+             <%if(idx === index){%>
+                
+              <% if(check.amount.includes('-')){ %>
+                <li class="minus">
+             
+          <%=check.category%> <span><%=check.amount%></span>
+          <button class="details"> <a href="/details/<%=exp._id%>">Details</a></button>
+             </li>
+              
+              <%}else{%>
+                <li class="plus">
+          <%=check.category%> <span><%=check.amount%></span>
+                 
+                  <button class="details"> <a href="/details/<%=exp._id%>">Details</a></button>
+              </li>
+              
+         <% } %>
+
+            <%}%>
+         <% })%>
        
-    <%=check.category%> <span><%=check.amount%></span>
-    
-    <button class="details"> <a href="/details">Details</a></button>
-       </li>
-        
-        <%}else{%>
-          <li class="plus">
-    <%=check.category%> <span><%=check.amount%></span>
-           
-            <button class="details"> <a href="/details">Details</a></button>
-        </li>
-        
-   <%} }) %>
+  <%}) %>
         
     </ul>
   </div>
-  <script src="/javascripts/expense.js"></script>
+  <!-- <script src="/javascripts/expense.js"></script> -->
 
 <%- include("partials/footer")%>
+
 
 <style>
   :root{
@@ -116,7 +125,7 @@
     padding-bottom: 10px;
     margin: 40px 0 10px;
   }
-  h4{
+  .inc-exp-container h4{
     margin: 0;
     text-transform: uppercase;
   }
@@ -159,8 +168,9 @@
     box-shadow: var(--box-shadow);
     color: #333;
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    position: relative;
+    /* position: relative; */
     padding: 10px;
     margin: 10px 0;
   }
@@ -193,4 +203,35 @@
     text-decoration: none;
     color: #333;
   }
+  .details {
+    width: 100%;
+  }
+/* Media queries for tablets */
+@media only screen and (max-width: 978px) {
+  .container {
+    width: 80%; 
+    margin-top: 35vw;
+    left: 10vw;/* Adjust width as needed for tablets */
+  }
+   .list li{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   }
+  .money {
+    font-size: 2.5vmax; /* Adjust font size for tablets */
+  }
+}
+
+/* Media queries for mobile devices */
+@media only screen and (max-width: 480px) {
+  .container {
+    width: 90%; /* Adjust width as needed for mobile devices */
+  }
+
+  .money {
+    font-size: 2vmax; /* Adjust font size for mobile devices */
+  }
+} 
+
 </style>

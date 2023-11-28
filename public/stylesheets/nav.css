@@ -1,34 +1,64 @@
-.nav{
+/* Base styles */
+.nav {
     width: 100%;
-    /* height: 11vh;  */
     display: flex;
     align-items: center;
     justify-content: space-between;
     position: fixed;
     background-color: white;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    /* background-color: rgb(169, 166, 166); */
-}  
-.logo{
+}
+
+.logo {
     display: flex;
     align-items: center;
 }
-.nav .logo , .nav .button{
+
+.nav .logo, .nav .button {
     padding: 0 10%;
 }
-.nav .logo h4{
-   font-size: 25px;
-   font-weight: 800;
+
+.nav .logo h4 {
+    font-size: 25px;
+    font-weight: 800;
 }
-.nav .button button{
+
+.nav .button button {
     width: 7vmax;
     height: 3vmax;
     border-radius: 50px;
     border: none;
     background-color: #17807D;
 }
+
 .nav button a {
     text-decoration: none;
     font-size: 1.1vmax;
     color: white;
+}
+
+/* Media queries for tablet */
+@media only screen and (max-width: 978px) {
+    .nav .logo, .nav .button {
+        padding: 0 5%;
+    }
+}
+
+/* Media queries for mobile phones */
+@media only screen and (max-width: 480px) {
+    .nav .logo, .nav .button {
+        width: 100%;
+        padding: 10px;
+        text-align: center;
+    }
+    .logo img{
+        width: 50px;
+    }
+    .nav .logo h4 {
+        font-size: 20px;
+        font-weight: 800;
+    }
+    .nav .button button {
+        width: 100%;
+    }
 }

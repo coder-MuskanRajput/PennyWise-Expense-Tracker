@@ -16,7 +16,7 @@
    position: absolute;
    width: 300px;
    top: 10%;
-   left: 32%;
+   left: 30%;
 }
 .forgetImg{
   position: absolute;
@@ -70,7 +70,7 @@
  }
  .form-container form .home{
     padding: 14.5px; 
-    width: 40%;
+    width: 50%;
     margin: 1vmax 0;
     border: none;
     outline: none;
@@ -190,4 +190,48 @@
  .alert{
   font-size: 17px;
   color: rgb(236, 183, 85);
+}
+
+
+
+@media only screen and (max-width: 978px) {
+  .signupImg,  .forgetImg {
+      width: 20vmax; 
+       left: 14vw; 
+      top: 7vw;
+      display: none;
+  }
+  .signinImg{
+    width: 25vmax; 
+    left: 12vw; 
+   top: 10vw;
+   display: none;
+  }
+  
+  .form-container {
+      width: 60vw; /* Adjust the width as needed */
+  }
+  .form-container form {
+     width: 100%;
+  }
+  
+}
+
+/* Media queries for mobile devices */
+@media only screen and (max-width: 480px) {
+  .signupImg, .forgetImg {
+      width: 18vmax; /* Adjust the width as needed */
+      left: 2vw;
+      top: 15vw; /* Adjust the left position as needed */
+      display: none;
+  }
+  .signinImg{
+    width: 23vmax; 
+    left: -2vw; 
+   top: 19vw;
+   display: none;
+  }
+  .form-container {
+      width: 90vmin; /* Adjust the width as needed */
+  }
 }

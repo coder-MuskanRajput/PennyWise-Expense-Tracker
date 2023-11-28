@@ -1,41 +1,76 @@
 .box {
-    position: absolute;
-    top: 15%;
-    left: 5%;
-    width: 450px;
-    height: fit-content;
-    border-radius: 20px;
-    padding: 20px;
-    text-align: center;
-    background: #ededed;
-    margin-top: 10px;
+  position: fixed;
+  top: 15%;
+  left: 5%;
+  width: 90%; /* Adjust the width as needed for smaller screens */
+  max-width: 450px;
+  height: fit-content;
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+  background: #ededed;
+  margin-top: 10px;
 }
+
 .name {
-font-size:1vmax;
-font-family: Verdana, Geneva, Tahoma, sans-serif;
-font-weight: 700;
-letter-spacing: 1px;
-text-transform: uppercase;
+  font-size: 1vmax; /* Adjust the font size as needed */
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 button {
-width: 130px;
-height: 40px;
-border-radius: 10px;
-font-weight: 600;
+  width: 110%;
+  max-width: 130px;
+  height: 40px;
+  border-radius: 10px;
+  font-weight: 600;
 }
 
 .button {
-display: flex;
-justify-content: space-around;
-flex-direction: row;
-padding-top: 10%;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  padding-top: 10%;
 }
 
 .button .message {
-cursor: pointer;
+  cursor: pointer;
 }
-button.message:hover {
-  background: #17807D;
-  color: white;
+
+@media only screen and (max-width: 978px) {
+  .box {
+      width: 90%;
+      max-width: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+  }
+
+  .name {
+      font-size: 2.5vmax;
+  }
+
+  button {
+      width: 100%;
+      max-width: none;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .box {
+      padding: 10px;
+  }
+
+  .name {
+      font-size: 2vmax;
+  }
+
+  button {
+      height: 35px;
+  }
+
+  .button {
+      padding-top: 5%;
+  }
 }

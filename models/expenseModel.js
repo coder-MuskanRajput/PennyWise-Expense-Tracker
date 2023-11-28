@@ -5,7 +5,10 @@ const expenseModel = new mongoose.Schema({
   amount: Number,
   category: String,
   text: String,
-  date: { type: Date, default: Date.now },
+  date: {
+     type: Date,
+    //  default: Date.now
+    },
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
 },{
   timestamps:true

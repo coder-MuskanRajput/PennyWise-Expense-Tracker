@@ -1,4 +1,16 @@
-<%- include("partials/header")%>
+<%- include("partials/header") %>
 
+      <%= data.tags %>
+      <br>
+      <%= data.amount %>
+      <br>
+      <%= data.category %>
+      <br>
+      <%= data.text %>
+      <br>
+      <%= data.date %>
+      <br>
+<button class="delete"><a href="/deleteExpense">Delete</a></button>
+<button class="update"><a href="/update">Update</a></button>
 
-<%- include("partials/footer")%>
+<%- include("partials/footer") %>
