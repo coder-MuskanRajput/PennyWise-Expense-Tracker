@@ -217,9 +217,28 @@ router.post("/changePassword" , isLoggedIn , async function(req,res,next){
   }
 })
 
+/* GET change Add Expense page.*/
+
+
 router.get("/addExpenses" , isLoggedIn, function(req,res,next){
-  res.render("addExpenses" )
+  const expenseCategories = [
+    'Groceries',
+    'Utilities',
+    'Rent/Mortgage',
+    'Transportation',
+    'Entertainment',
+    'Dining out',
+    'Healthcare',
+    'Shopping',
+    'Education',
+    'Travel',
+    'Miscellaneous'
+  ];
+  
+  res.render("addExpenses" ,{categoryList : expenseCategories})
 })
+
+/* POST change Add Expense page.*/
 
 router.post("/addExpenses" , isLoggedIn, async function(req,res,next){
   try {
@@ -256,27 +275,72 @@ router.post("/addExpenses" , isLoggedIn, async function(req,res,next){
     res.send(error)
   }
 })
+ 
 
 router.get("/details/:id" , isLoggedIn, async function(req,res,next){
    try {
       const data = await EXPENSE.findById(req.params.id)
+      // console.log(data)
       res.render("details",{data:data})
+    
    } catch (error) {
     console.log("Details Error" , error)
      res.send(error)
    }
 })
 
-router.post("/deleteExpense/:id" , isLoggedIn , async function(req,res,next){
+router.get("/deleteExpense/:id" , isLoggedIn , async function(req,res,next){
     try {
-      const detail = await EXPENSE.findByIdAndDelete(req.params.id)
-      res.redirect("/details");
+      // const detail = await EXPENSE.findByIdAndDelete(req.params.id)
+      // detail.splice(req.params.id,1)
+
+      req.user.add.forEach(function(exp, ind){
+         req.user.expenses.forEach( async function(del , index ){
+                 if(ind === index){
+
+               if(del._id === req.params.id){
+                  req.user.add.splice(ind , 1)
+                  req.user.expenses.splice(exp , 1)
+                  // await detail.save();
+
+                  console.log(del , ind , index);
+                  res.redirect("/details");
+
+               }
+          }
+         })
+      })
+
     } catch (error) {
       console.log("delete ka Error hai", error)
       res.send(error)
     }
 })
 
+router.get("/update/:id" , isLoggedIn, async function(req,res,next){
+  const prop = await EXPENSE.findById(req.params.id);
+  const expenseCategories = [
+    'Groceries',
+    'Utilities',
+    'Rent/Mortgage',
+    'Transportation',
+    'Entertainment',
+    'Dining out',
+    'Healthcare',
+    'Shopping',
+    'Education',
+    'Travel',
+    'Miscellaneous'
+  ];
+  
+  res.render("update" , {prop: prop , categoryList : expenseCategories})
+
+}) 
+
+router.post("/update/:id" , isLoggedIn, function(req,res,next){
+
+  res.render("update" )
+})
 // is logged in function
 
 function isLoggedIn(req, res, next) {

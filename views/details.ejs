@@ -1,5 +1,5 @@
 <%- include("partials/header") %>
-
+       
       <%= data.tags %>
       <br>
       <%= data.amount %>
@@ -10,7 +10,8 @@
       <br>
       <%= data.date %>
       <br>
-<button class="delete"><a href="/deleteExpense">Delete</a></button>
-<button class="update"><a href="/update">Update</a></button>
 
+      <button class="delete"><a href="/deleteExpense/<%= data._id %>">Delete</a></button>
+      <button class="update"><a href="/update">Update</a></button>
+                    
 <%- include("partials/footer") %>

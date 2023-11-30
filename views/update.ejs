@@ -7,19 +7,19 @@
 </div>
 
 <div class="container">
-    <h3>Add New Transition</h3>
+    <h3> Update Transition</h3>
 
     <form action="/addExpenses" method="post">
         <div class="form-control">
             <label for="Tags">Tags</label>
-            <input type="text"  id="tags" name="tags" placeholder="Enter Tags......" required>
+            <input type="text"  id="tags" name="tags" placeholder="Enter Tags......" value="<%=prop.tags%>" required>
         </div>
         <div class="form-control">
             <label for="amount">Amount</label>
             <p>Add amount with + it goes to income</p>
             <p>Add amount with - it goes to expense</p>
             <br>
-            <input type="number" id="amount" name="amount" placeholder="Enter Amount..." required>
+            <input type="number" id="amount" name="amount" placeholder="Enter Amount..." value="<%=prop.amount%>" required>
         </div>
 
         <div class="form-control">
@@ -27,7 +27,7 @@
             <br>
             <!-- <input type="text" id="category" name="category" placeholder="Enter Categories.." required > -->
             <select name="category" id="category">
-                <option value="">Choose Category</option>
+                <option value="<%= prop.category%>">Choose Category</option>
                <% categoryList.forEach(function(cate){ %>
                     <option value="<%= cate %>"><%= cate %></option>
                <% }) %>
@@ -36,13 +36,13 @@
 
         <div class="form-control">
             <label for="Text">Text</label>
-            <input type="text" id="text" name="text" placeholder="Enter Text.." required>
+            <input type="text" id="text" name="text" placeholder="Enter Text.." value="<%= prop.text%>" required>
         </div>
         <div class="form-control">
             <label for="date">Date</label>
-            <input type="date" id="date" name="date" placeholder="Enter Date" required>
+            <input type="date" id="date" name="date" placeholder="Enter Date" value="<%= prop.date%>" required>
         </div>
-         <button class="btn">All Transaction</button>
+         <button class="btn">Update</button>
     </form>
 
 </div>

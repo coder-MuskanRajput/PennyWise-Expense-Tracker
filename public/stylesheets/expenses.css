@@ -32,6 +32,15 @@ input[type="text"], [type="number"], [type="date"] {
   width: 100%;
 }
 
+#category{
+  border: 1px solid #dedede;
+  border-radius: 2px;
+  display: block;
+  font-size: 16px;
+  padding: 10px;
+  width: 100%;
+}
+
 .btn {
   cursor: pointer;
   background-color: #9c88ff;
