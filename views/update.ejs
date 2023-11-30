@@ -9,7 +9,7 @@
 <div class="container">
     <h3> Update Transition</h3>
 
-    <form action="/addExpenses" method="post">
+    <form action="/update/<%=prop._id%>" method="post">
         <div class="form-control">
             <label for="Tags">Tags</label>
             <input type="text"  id="tags" name="tags" placeholder="Enter Tags......" value="<%=prop.tags%>" required>
@@ -28,8 +28,8 @@
             <!-- <input type="text" id="category" name="category" placeholder="Enter Categories.." required > -->
             <select name="category" id="category">
                 <option value="<%= prop.category%>">Choose Category</option>
-               <% categoryList.forEach(function(cate){ %>
-                    <option value="<%= cate %>"><%= cate %></option>
+               <% categoryList.forEach(function(cat){ %>
+                    <option value="<%= cat %>"><%= cat %></option>
                <% }) %>
             </select>
         </div>

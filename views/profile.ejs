@@ -31,8 +31,8 @@
   <% var income = 0 %>
   <% var expense = 0 %>
 
-  <%user.add.forEach(function(incExp){%>
-    <%if(incExp.amount.includes("-")){%>
+  <%exp.forEach(function(incExp){%>
+    <%if(incExp.amount<0 ){%>
       <% expense +=  +incExp.amount; %>
     
     <%}else{%>
@@ -68,31 +68,28 @@
 
     <ul id="list" class="list">
       
-      <% user.add.forEach(function(check , idx){ %>
+      <% exp.forEach(function(check){ %>
 
-         <% user.expenses.forEach(function(exp , index){ %>
-             <%if(idx === index){%>
                 
-              <% if(check.amount.includes('-')){ %>
+              <% if(check.amount <0 ){ %>
                 <li class="minus">
              
           <%=check.category%> <span><%=check.amount%></span>
-          <button class="details"> <a href="/details/<%=exp._id%>">Details</a></button>
+          <button class="details"> <a href="/details/<%=check._id%>">Details</a></button>
              </li>
               
               <%}else{%>
                 <li class="plus">
           <%=check.category%> <span><%=check.amount%></span>
                  
-                  <button class="details"> <a href="/details/<%=exp._id%>">Details</a></button>
+                  <button class="details"> <a href="/details/<%=check._id%>">Details</a></button>
               </li>
               
          <% } %>
 
-            <%}%>
+          
          <% })%>
        
-  <%}) %>
         
     </ul>
   </div>

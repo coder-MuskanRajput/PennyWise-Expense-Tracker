@@ -63,9 +63,21 @@ router.get("/signout", isLoggedIn,function (req, res, next){
   });
 });
 
-router.get("/profile" , isLoggedIn, function(req,res,next){
-   
-   res.render("profile" , {user: req.user})
+router.get("/profile" , isLoggedIn, async function(req,res,next){
+   try {
+        const exp = await EXPENSE.find();
+        let allExp = []
+        exp.forEach(function(user){
+          if(user.user.toString() === req.user.id){
+              allExp.push(user);
+          }
+        })
+        console.log(allExp);
+        res.render("profile" , {user: req.user , exp : allExp})
+   } catch (error) {
+     console.log("Expense add krne m error aaya hai" , error)
+     res.send(error)
+   }
 })
 
 
@@ -246,10 +258,10 @@ router.post("/addExpenses" , isLoggedIn, async function(req,res,next){
     req.user.expenses.push(expense._id);
     expense.user = req.user.id;
 
-    req.user.add.push({
-      amount : req.body.amount,
-      category : req.body.category
-    });
+    // req.user.add.push({
+    //   amount : req.body.amount,
+    //   category : req.body.category
+    // });
 
   //   if(req.body.amount.includes("-")){
   //     req.user.add.push(req.body.amount)
@@ -291,26 +303,14 @@ router.get("/details/:id" , isLoggedIn, async function(req,res,next){
 
 router.get("/deleteExpense/:id" , isLoggedIn , async function(req,res,next){
     try {
-      // const detail = await EXPENSE.findByIdAndDelete(req.params.id)
-      // detail.splice(req.params.id,1)
-
-      req.user.add.forEach(function(exp, ind){
-         req.user.expenses.forEach( async function(del , index ){
-                 if(ind === index){
-
-               if(del._id === req.params.id){
-                  req.user.add.splice(ind , 1)
-                  req.user.expenses.splice(exp , 1)
-                  // await detail.save();
-
-                  console.log(del , ind , index);
-                  res.redirect("/details");
-
-               }
-          }
-         })
+      const detail = await EXPENSE.findByIdAndDelete(req.params.id)
+      req.user.expenses.forEach(function(del ,ind){     
+        if(req.params.id === del.toString()){
+           req.user.expenses.splice(ind,1)
+        }
       })
-
+      await req.user.save()
+      res.redirect("/profile")
     } catch (error) {
       console.log("delete ka Error hai", error)
       res.send(error)
@@ -332,14 +332,20 @@ router.get("/update/:id" , isLoggedIn, async function(req,res,next){
     'Travel',
     'Miscellaneous'
   ];
-  
   res.render("update" , {prop: prop , categoryList : expenseCategories})
-
 }) 
 
-router.post("/update/:id" , isLoggedIn, function(req,res,next){
-
-  res.render("update" )
+router.post("/update/:id" , isLoggedIn, async function(req,res,next){
+  const upd = await EXPENSE.findByIdAndUpdate(req.params.id ,
+    {
+       tags: req.body.tags,
+       amount : req.body.amount,
+       category : req.body.category,
+       text : req.body.text,
+       date : req.body.date
+    });
+  await upd.save();
+  res.redirect(`/details/${req.params.id}`)
 })
 // is logged in function
 
@@ -351,5 +357,4 @@ function isLoggedIn(req, res, next) {
       res.redirect("/signin");
   }
 }
-
 module.exports = router;
