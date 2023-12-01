@@ -288,6 +288,7 @@ router.post("/addExpenses" , isLoggedIn, async function(req,res,next){
   }
 })
  
+// Details route
 
 router.get("/details/:id" , isLoggedIn, async function(req,res,next){
    try {
@@ -300,6 +301,9 @@ router.get("/details/:id" , isLoggedIn, async function(req,res,next){
      res.send(error)
    }
 })
+
+
+// Delete route
 
 router.get("/deleteExpense/:id" , isLoggedIn , async function(req,res,next){
     try {
@@ -316,6 +320,8 @@ router.get("/deleteExpense/:id" , isLoggedIn , async function(req,res,next){
       res.send(error)
     }
 })
+
+// update route
 
 router.get("/update/:id" , isLoggedIn, async function(req,res,next){
   const prop = await EXPENSE.findById(req.params.id);
@@ -347,8 +353,22 @@ router.post("/update/:id" , isLoggedIn, async function(req,res,next){
   await upd.save();
   res.redirect(`/details/${req.params.id}`)
 })
-// is logged in function
 
+// search route
+
+router.get("/filter", async function (req, res, next) {
+  try {
+      let { expenses } = await req.user.populate("expenses");
+      expenses = expenses.filter((e) => e[req.query.key] == req.query.value);
+      res.render("profile", { expenses });
+  } catch (error) {
+      console.log(error);
+      res.send(error);
+  }
+});
+
+// is logged in function
+ 
 function isLoggedIn(req, res, next) {
   
   if (req.isAuthenticated()) {

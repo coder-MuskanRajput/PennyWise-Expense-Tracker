@@ -36,7 +36,7 @@
 
         <div class="form-control">
             <label for="Text">Text</label>
-            <input type="text" id="text" name="text" placeholder="Enter Text.." required>
+            <input type="text" id="text" name="text" placeholder="Enter Text.." >
         </div>
         <div class="form-control">
             <label for="date">Date</label>
@@ -46,5 +46,13 @@
     </form>
 
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const currentDate = new Date().toISOString().split('T')[0];
+        document.getElementById('date').value = currentDate;
+    });
+
+</script>
 <!-- <script src="/javascripts/expense.js"></script> -->
 <%- include("partials/footer")%>

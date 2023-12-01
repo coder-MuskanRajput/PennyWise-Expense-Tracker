@@ -28,23 +28,31 @@
             <!-- <input type="text" id="category" name="category" placeholder="Enter Categories.." required > -->
             <select name="category" id="category">
                 <option value="<%= prop.category%>">Choose Category</option>
-               <% categoryList.forEach(function(cat){ %>
-                    <option value="<%= cat %>"><%= cat %></option>
+               <% categoryList.forEach(function(cate){ %>
+                    <option <%= prop.category === cate ? "selected" : ""  %> value="<%= cate %>"><%= cate %></option>
                <% }) %>
             </select>
         </div>
 
         <div class="form-control">
             <label for="Text">Text</label>
-            <input type="text" id="text" name="text" placeholder="Enter Text.." value="<%= prop.text%>" required>
+            <input type="text" id="text" name="text" placeholder="Enter Text.." value="<%= prop.text%>" >
         </div>
         <div class="form-control">
             <label for="date">Date</label>
-            <input type="date" id="date" name="date" placeholder="Enter Date" value="<%= prop.date%>" required>
+            <input type="date" id="date" name="date" placeholder="Enter Date"  required>
         </div>
          <button class="btn">Update</button>
     </form>
 
 </div>
 <!-- <script src="/javascripts/expense.js"></script> -->
+
+<script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const currentDate = new Date().toISOString().split('T')[0];
+            document.getElementById('date').value = currentDate;
+        });
+
+</script>
 <%- include("partials/footer")%>

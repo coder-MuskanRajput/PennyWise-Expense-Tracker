@@ -27,7 +27,24 @@
           </div>
       </div>
   </div>
+  <hr>
+  <div>
+    
+  <form action="/filter">
+    <select name="key" id="">
+      <option value="tags">Tags</option>
+      <option value="amount">Amount</option>
+      <option value="category">Category</option>
+      <option value="date">Date</option>
+    </select>
+    <input type="text" name="value" placeholder="Enter Search Term">
+    <button>Search</button>
+  </form>
 
+</div>
+<style>
+  
+</style>
   <% var income = 0 %>
   <% var expense = 0 %>
 
@@ -203,32 +220,10 @@
   .details {
     width: 100%;
   }
-/* Media queries for tablets */
-@media only screen and (max-width: 978px) {
-  .container {
-    width: 80%; 
-    margin-top: 35vw;
-    left: 10vw;/* Adjust width as needed for tablets */
-  }
-   .list li{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-   }
-  .money {
-    font-size: 2.5vmax; /* Adjust font size for tablets */
-  }
-}
 
-/* Media queries for mobile devices */
-@media only screen and (max-width: 480px) {
-  .container {
-    width: 90%; /* Adjust width as needed for mobile devices */
+  form{
+    margin-top: 15vmax ;
+    margin-left: 70vmax;
   }
-
-  .money {
-    font-size: 2vmax; /* Adjust font size for mobile devices */
-  }
-} 
 
 </style>

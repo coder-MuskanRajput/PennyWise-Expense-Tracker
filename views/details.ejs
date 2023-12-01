@@ -1,17 +1,85 @@
 <%- include("partials/header") %>
-       
-      <%= data.tags %>
+      
+<div class="content">
+      <h1>Tags : <%= data.tags %> </h1>
       <br>
-      <%= data.amount %>
+      <h1>Amount : <%= data.amount %> </h1>
       <br>
-      <%= data.category %>
+      <h1>Category : <%= data.category %></h1>
       <br>
-      <%= data.text %>
+      <h1>Text : <%= data.text %></h1>
       <br>
-      <%= data.date %>
+       <h1>Date : <%= data.date %></h1>
       <br>
 
       <button class="delete"><a href="/deleteExpense/<%= data._id %>">Delete</a></button>
       <button class="update"><a href="/update/<%=data._id%>">Update</a></button>
-                    
+      <button class="back"> <a href="/profile">Back</a>  </button>
+  
+</div> 
+             
+<style>
+  body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f0f0;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+h1{
+      font-size: 21px;
+}
+.content {
+  max-width: 600px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.data-section {
+  margin-bottom: 10px;
+}
+
+.delete,
+.update ,
+.back{
+  display: inline-block;
+  background-color: #dc3545;
+  color: #fff;
+  padding: 8px 12px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.delete a , .update a , .back a{
+      text-decoration: none;
+      color: white;
+      font-size: medium;
+}
+.delete:hover,
+.update:hover,
+.back:hover{
+  background-color: #c82333;
+}
+@media only screen and (max-width: 768px) {
+  .content {
+    width: 95%; /* Adjust for smaller screens */
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .delete,
+  .update {
+    font-size: 14px; /* Adjust font size for smaller screens */
+  }
+}
+</style>
 <%- include("partials/footer") %>
+
+
