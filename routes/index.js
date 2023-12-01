@@ -360,7 +360,7 @@ router.get("/filter", async function (req, res, next) {
   try {
       let { expenses } = await req.user.populate("expenses");
       expenses = expenses.filter((e) => e[req.query.key] == req.query.value);
-      res.render("profile", { expenses });
+      res.render("profile", {user: req.user , exp : expenses});
   } catch (error) {
       console.log(error);
       res.send(error);
