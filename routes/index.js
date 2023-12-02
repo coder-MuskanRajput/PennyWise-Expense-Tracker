@@ -290,12 +290,11 @@ router.post("/addExpenses" , isLoggedIn, async function(req,res,next){
  
 // Details route
 
-router.get("/details/:id" , isLoggedIn, async function(req,res,next){
+router.get("/details/:id" , isLoggedIn , async function(req,res,next){
    try {
       const data = await EXPENSE.findById(req.params.id)
       // console.log(data)
       res.render("details",{data:data})
-    
    } catch (error) {
     console.log("Details Error" , error)
      res.send(error)
