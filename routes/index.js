@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 const USER = require("../models/usermodel");
 const EXPENSE = require("../models/expenseModel");
-const gmailCred = require("../EmailHide");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const nodemailer = require("nodemailer");
@@ -91,8 +90,8 @@ const transport = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
   auth: {
-      user: gmailCred.gmail,
-      pass: gmailCred.pass,
+      user: process.env.GMAIL,
+      pass: process.env.PASS,
   },
 });
 
